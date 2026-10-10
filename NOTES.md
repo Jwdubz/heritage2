@@ -8,3 +8,9 @@ Facts and sources (fetched 2026-10-10):
 - Weekly quote — lasvegasweekly.com 2026-08-27, Best Tattoo Shop, 2026 Best of Vegas
 - Photo/artist attributions — draft1 asset names (live on heritage.jarrettwroten.com)
 VERIFY: current roster — their /artists page lists Aaron Neiman, Brett Rosepiler, Kent Kelley, Spider, Kelsey Lane, Dwight Bulb, which conflicts with draft1's ten names; only work credits are shown here.
+
+## Roster — resolved 2026-10-10 from heritagetattoolv.com (raw HTML saved in ../source-heritage-site/)
+/artists lists: Aaron, Brett, Kent, Spider, Kelsey, Dwight. /brett returns "We couldn't find the page". /artists is not linked from the homepage nav.
+Artist pages (facts used verbatim-ish in captions): Aaron Neiman "Owner and artist ... tattooing for over 20 years"; Kent Kelley "a staple of the Las Vegas tattoo community since 1995"; Brandon "Spider" "tattooing in Las Vegas since 2007"; Kelsey Lane "Born and raised in Las Vegas, NV ... tattooing since 2011"; Dwight Bulb "A Las Vegas native".
+Change: all run + payoff images now come from each artist's own page on Heritage's site. Removed work by Chris Astrologo, Cam Kelley, Leah Westerlund, Dylan Prorok, Jeffrey Bowser, Josh Echevarria, Austin Hermans (not on Heritage's own roster pages). B&W craft frames are from Heritage's site-wide gallery; artist not named there, so alt text doesn't name them.
+VERIFY: Kent's page heading spells "kent kelly" while handle is @Kent.Kelley; we use Kelley (the /artists label + handle). About page says 8 artists; only 5 live artist pages.

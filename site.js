@@ -1,6 +1,6 @@
 (function(){
 var d=document.documentElement,held=document.getElementById('held');
-var shots=[].slice.call(document.querySelectorAll('.sh')),T=[0,1.6,3.2,4.8],LOOP=7.4,PAYOFF=4.8+0.25; /* hold payoff 2.6s; word lands 0.25s after the cut [B: rule] */
+var shots=[].slice.call(document.querySelectorAll('.sh')),T=[0,1.8,3.6],LOOP=6.6,PAYOFF=3.6+0.25; /* hold payoff 3.0s; word lands 0.25s after the cut [B: rule] */
 var paused=false,t0=performance.now(),acc=0,last=performance.now(),cur=0,shown=false;
 function show(i){if(i===cur)return;shots[cur].classList.remove('on');void shots[i].offsetWidth;shots[i].classList.add('on');cur=i}
 function loop(now){var dt=(now-last)/1000;last=now;if(!paused){acc=(acc+dt)%LOOP;var i=0;for(var k=0;k<T.length;k++)if(acc>=T[k])i=k;show(i);if(!shown&&acc>=PAYOFF){held.classList.add('on');shown=true}}requestAnimationFrame(loop)}
@@ -10,7 +10,8 @@ document.querySelectorAll('.reveal-words').forEach(function(el){
     if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(t){if(!t)return;if(/^\s+$/.test(t))f.appendChild(document.createTextNode(t));else{var s=document.createElement('span');s.className='rw';s.textContent=t;f.appendChild(s)}});n.replaceChild(f,c)}
     else if(c.nodeType===1)walk(c)})})(el)});
 var lenis=null;
-if(window.Lenis){lenis=new Lenis({duration:1.1,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t))}});function raf(t){if(!paused)lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf)}
+if(window.Lenis){lenis=new Lenis({duration:1.1,autoRaf:false,easing:function(t){return Math.min(1,1.001-Math.pow(2,-10*t))}}); /* glide; driven by gsap.ticker [MO-25] */
+  if(window.gsap){gsap.ticker.add(function(t){if(!paused)lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0)}else{(function raf(t){if(!paused)lenis.raf(t);requestAnimationFrame(raf)})(0)}}
 if(window.gsap&&window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);if(lenis)lenis.on('scroll',ScrollTrigger.update);
   document.querySelectorAll('.reveal-words').forEach(function(el){var w=el.querySelectorAll('.rw');
     ScrollTrigger.create({trigger:el,start:'top 85%',end:'bottom 45%',onUpdate:function(s){var n=Math.ceil(s.progress*w.length*1.15);for(var i=0;i<w.length;i++)w[i].classList.toggle('on',i<n)},onLeave:function(){w.forEach(function(x){x.classList.add('on')})}})});
